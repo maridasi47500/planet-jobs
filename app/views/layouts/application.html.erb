@@ -29,6 +29,8 @@
     <nav>
       <%candidat=false%>
       <%=(candidat ? "&#9745; tu as candidaté à au moins une offre dans les 7 jours précédents" : "&#9744; tu as candidaté à aucune offre dans les 7 jours précédents").html_safe%>
+      <%=link_to "CVs", resumes_path%>
+      <%=link_to "job searches", jobsearches_path%>
     </nav>
     <%= yield %>
 <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>

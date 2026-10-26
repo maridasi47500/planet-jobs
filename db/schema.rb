@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_26_145435) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_26_152216) do
   create_table "jobsearches", force: :cascade do |t|
     t.string "what"
     t.string "where"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resumes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "poste_convoite"
+    t.string "nom_complet"
+    t.string "ville"
+    t.string "permis"
+    t.string "projet_professionnel"
+    t.string "email"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

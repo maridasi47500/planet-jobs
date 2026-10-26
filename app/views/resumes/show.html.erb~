@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @resume %>
+<%a=%w(projet_professionnel email phone poste_convoite nom_complet ville permis)%>
+<%y=[@resume.projet_professionnel, @resume.email, @resume.phone, @resume.poste_convoite, @resume.nom_complet, @resume.ville, @resume.permis]%>
+<%x=y.map{|h|h.to_s.length > 0}.select{|h|h}.length%>
+<%z=(x/y.length.to_f*100).to_i%>
+<p>
+votre cv est complété à <%=z%>%
+</p>
+<div class="progress">
+  <div class="progress-bar" style="width:<%=z%>%"></div>
+</div>
+<ul>
+<%a.to_a.each do |h|%>
+  <li></li>
+<%end%>
+</ul>
+
+<div>
+  <%= link_to "Edit this resume", edit_resume_path(@resume) %> |
+  <%= link_to "Back to resumes", resumes_path %>
+
+  <%= button_to "Destroy this resume", @resume, method: :delete %>
+</div>
