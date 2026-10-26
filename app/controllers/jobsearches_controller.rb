@@ -1,0 +1,70 @@
+class JobsearchesController < ApplicationController
+  before_action :set_jobsearch, only: %i[ show edit update destroy ]
+
+  # GET /jobsearches or /jobsearches.json
+  def index
+    @jobsearches = Jobsearch.all
+  end
+
+  # GET /jobsearches/1 or /jobsearches/1.json
+  def show
+  end
+
+  # GET /jobsearches/new
+  def new
+    @jobsearch = Jobsearch.new
+  end
+
+  # GET /jobsearches/1/edit
+  def edit
+  end
+
+  # POST /jobsearches or /jobsearches.json
+  def create
+    @jobsearch = Jobsearch.new(jobsearch_params)
+
+    respond_to do |format|
+      if @jobsearch.save
+        format.html { redirect_to @jobsearch, notice: "Jobsearch was successfully created." }
+        format.json { render :show, status: :created, location: @jobsearch }
+      else
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @jobsearch.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # PATCH/PUT /jobsearches/1 or /jobsearches/1.json
+  def update
+    respond_to do |format|
+      if @jobsearch.update(jobsearch_params)
+        format.html { redirect_to @jobsearch, notice: "Jobsearch was successfully updated.", status: :see_other }
+        format.json { render :show, status: :ok, location: @jobsearch }
+      else
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @jobsearch.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # DELETE /jobsearches/1 or /jobsearches/1.json
+  def destroy
+    @jobsearch.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to jobsearches_path, notice: "Jobsearch was successfully destroyed.", status: :see_other }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_jobsearch
+      @jobsearch = Jobsearch.find(params.expect(:id))
+    end
+
+    # Only allow a list of trusted parameters through.
+    def jobsearch_params
+      params.expect(jobsearch: [ :what, :where ])
+    end
+end

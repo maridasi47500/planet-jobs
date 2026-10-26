@@ -1,0 +1,12 @@
+<% content_for :title, "Editing jobsearch" %>
+
+<h1>Editing jobsearch</h1>
+
+<%= render "form", jobsearch: @jobsearch %>
+
+<br>
+
+<div>
+  <%= link_to "Show this jobsearch", @jobsearch %> |
+  <%= link_to "Back to jobsearches", jobsearches_path %>
+</div>
