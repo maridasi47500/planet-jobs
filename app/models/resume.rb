@@ -4,4 +4,5 @@ class Resume < ApplicationRecord
   has_many :jobs
   has_many :resumeassets
   has_many :computerskills
+  has_many :ville_mobilites
 end

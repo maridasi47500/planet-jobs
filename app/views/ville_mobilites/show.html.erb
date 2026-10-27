@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ville_mobilite %>
+
+<div>
+  <%= link_to "Edit this ville mobilite", edit_ville_mobilite_path(@ville_mobilite) %> |
+  <%= link_to "Back to ville mobilites", ville_mobilites_path %>
+
+  <%= button_to "Destroy this ville mobilite", @ville_mobilite, method: :delete %>
+</div>

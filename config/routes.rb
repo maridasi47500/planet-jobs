@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ville_mobilites
   resources :jobs
   resources :resumeassets
   resources :computerskills

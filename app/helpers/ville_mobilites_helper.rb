@@ -1,0 +1,2 @@
+module VilleMobilitesHelper
+end

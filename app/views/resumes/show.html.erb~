@@ -7,7 +7,7 @@
 <h2>
   <%="#{x}"%>
 </h2>
-<%=render eval("@resume.#{e}")%>
+<%=render eval("@resume.#{x}")%>
 <%end%>
 <%end%>
 <%=render @resume.jobs%>
@@ -25,7 +25,7 @@
 
 
 <%a=%w(projet_professionnel email phone poste_convoite nom_complet ville permis)%>
-<%b=%w(diplomes computerskills jobs resumeassets spokenlanguages)%>
+<%b=%w(diplomes computerskills ville_mobilites jobs resumeassets spokenlanguages)%>
 <%y=[@resume.projet_professionnel, @resume.email, @resume.phone, @resume.poste_convoite, @resume.nom_complet, @resume.ville, @resume.permis]%>
 <%w=b.map{|j|eval("@resume.#{j}") }%>
 <%x=y.map{|h|h.to_s.length > 0}.select{|h|h}.length%>

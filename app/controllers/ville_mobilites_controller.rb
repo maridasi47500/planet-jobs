@@ -1,0 +1,70 @@
+class VilleMobilitesController < ApplicationController
+  before_action :set_ville_mobilite, only: %i[ show edit update destroy ]
+
+  # GET /ville_mobilites or /ville_mobilites.json
+  def index
+    @ville_mobilites = VilleMobilite.all
+  end
+
+  # GET /ville_mobilites/1 or /ville_mobilites/1.json
+  def show
+  end
+
+  # GET /ville_mobilites/new
+  def new
+    @ville_mobilite = VilleMobilite.new(resume_id: params[:resume_id])
+  end
+
+  # GET /ville_mobilites/1/edit
+  def edit
+  end
+
+  # POST /ville_mobilites or /ville_mobilites.json
+  def create
+    @ville_mobilite = VilleMobilite.new(ville_mobilite_params)
+
+    respond_to do |format|
+      if @ville_mobilite.save
+        format.html { redirect_to @ville_mobilite.resume, notice: "Ville mobilite was successfully created." }
+        format.json { render :show, status: :created, location: @ville_mobilite }
+      else
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @ville_mobilite.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # PATCH/PUT /ville_mobilites/1 or /ville_mobilites/1.json
+  def update
+    respond_to do |format|
+      if @ville_mobilite.update(ville_mobilite_params)
+        format.html { redirect_to @ville_mobilite.resume, notice: "Ville mobilite was successfully updated.", status: :see_other }
+        format.json { render :show, status: :ok, location: @ville_mobilite }
+      else
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @ville_mobilite.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # DELETE /ville_mobilites/1 or /ville_mobilites/1.json
+  def destroy
+    @ville_mobilite.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to ville_mobilites_path, notice: "Ville mobilite was successfully destroyed.", status: :see_other }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_ville_mobilite
+      @ville_mobilite = VilleMobilite.find(params.expect(:id))
+    end
+
+    # Only allow a list of trusted parameters through.
+    def ville_mobilite_params
+      params.expect(ville_mobilite: [ :name, :resume_id ])
+    end
+end

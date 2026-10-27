@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Ville mobilites" %>
+
+<h1>Ville mobilites</h1>
+
+<div id="ville_mobilites">
+  <% @ville_mobilites.each do |ville_mobilite| %>
+    <%= render ville_mobilite %>
+    <p>
+      <%= link_to "Show this ville mobilite", ville_mobilite %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ville mobilite", new_ville_mobilite_path %>
