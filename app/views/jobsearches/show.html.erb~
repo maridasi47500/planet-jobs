@@ -3,11 +3,11 @@
 <%= render @jobsearch %>
 
 <p>
-  tu as été régulière sur la recherche de <%=@jobsearch.what%> à <%=@jobsearch.where%> que 1 jours sur 7 .
+tu as été régulière sur la recherche de <%=@jobsearch.what%> à <%=@jobsearch.where%> que <%=x%> jours sur 7 .
 </p>
 <div class="progress">
   <%x=1%>
-  <%x+=Usersearch.where(created_at: ((Date.today - 6.days).beginning_of_day..Date.yesterday.end_of_day)).length%>
+  <%x+=Usersearch.where(jobsearch: @jobsearch, created_at: ((Date.today - 6.days).beginning_of_day..Date.yesterday.end_of_day)).map{|h|h.created_at.to_date}.uniq.length%>
   <div class="progress-bar" style="width:<%=x/7.to_f*100.to_i%>%"></div>
 </div>
 

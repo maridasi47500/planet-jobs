@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  datedebut: 2026-10-27
+  datefin: 2026-10-27
+  nom_diplome: MyString
+  until_today: false
+  nom_ecole: MyString
+  lieu: MyString
+  details: MyText
+  resume: one
+
+two:
+  datedebut: 2026-10-27
+  datefin: 2026-10-27
+  nom_diplome: MyString
+  until_today: false
+  nom_ecole: MyString
+  lieu: MyString
+  details: MyText
+  resume: two

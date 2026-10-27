@@ -1,0 +1,70 @@
+class SpokenlanguagesController < ApplicationController
+  before_action :set_spokenlanguage, only: %i[ show edit update destroy ]
+
+  # GET /spokenlanguages or /spokenlanguages.json
+  def index
+    @spokenlanguages = Spokenlanguage.all
+  end
+
+  # GET /spokenlanguages/1 or /spokenlanguages/1.json
+  def show
+  end
+
+  # GET /spokenlanguages/new
+  def new
+    @spokenlanguage = Spokenlanguage.new
+  end
+
+  # GET /spokenlanguages/1/edit
+  def edit
+  end
+
+  # POST /spokenlanguages or /spokenlanguages.json
+  def create
+    @spokenlanguage = Spokenlanguage.new(spokenlanguage_params)
+
+    respond_to do |format|
+      if @spokenlanguage.save
+        format.html { redirect_to @spokenlanguage, notice: "Spokenlanguage was successfully created." }
+        format.json { render :show, status: :created, location: @spokenlanguage }
+      else
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @spokenlanguage.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # PATCH/PUT /spokenlanguages/1 or /spokenlanguages/1.json
+  def update
+    respond_to do |format|
+      if @spokenlanguage.update(spokenlanguage_params)
+        format.html { redirect_to @spokenlanguage, notice: "Spokenlanguage was successfully updated.", status: :see_other }
+        format.json { render :show, status: :ok, location: @spokenlanguage }
+      else
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @spokenlanguage.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # DELETE /spokenlanguages/1 or /spokenlanguages/1.json
+  def destroy
+    @spokenlanguage.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to spokenlanguages_path, notice: "Spokenlanguage was successfully destroyed.", status: :see_other }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_spokenlanguage
+      @spokenlanguage = Spokenlanguage.find(params.expect(:id))
+    end
+
+    # Only allow a list of trusted parameters through.
+    def spokenlanguage_params
+      params.expect(spokenlanguage: [ :resume_id, :language_id, :level, :details ])
+    end
+end

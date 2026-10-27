@@ -1,0 +1,37 @@
+<%= form_with(model: computerskill) do |form| %>
+  <% if computerskill.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(computerskill.errors.count, "error") %> prohibited this computerskill from being saved:</h2>
+
+      <ul>
+        <% computerskill.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :level, style: "display: block" %>
+    <%= form.text_field :level %>
+  </div>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.textarea :details %>
+  </div>
+
+  <div>
+    <%= form.label :resume_id, style: "display: block" %>
+    <%= form.text_field :resume_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

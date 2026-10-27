@@ -1,0 +1,36 @@
+<%= form_with(model: resumeasset) do |form| %>
+  <% if resumeasset.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(resumeasset.errors.count, "error") %> prohibited this resumeasset from being saved:</h2>
+
+      <ul>
+        <% resumeasset.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :resume_id %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.textarea :details %>
+  </div>
+
+  <div>
+    <%= form.label :level, style: "display: block" %>
+    <%= form.text_field :level %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

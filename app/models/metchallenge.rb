@@ -1,0 +1,2 @@
+class Metchallenge < ApplicationRecord
+end

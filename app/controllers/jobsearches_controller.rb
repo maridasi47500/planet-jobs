@@ -8,6 +8,7 @@ class JobsearchesController < ApplicationController
 
   # GET /jobsearches/1 or /jobsearches/1.json
   def show
+        @jobsearch.usersearches << Usersearch.create(user_id: 1)
   end
 
   # GET /jobsearches/new
@@ -21,10 +22,11 @@ class JobsearchesController < ApplicationController
 
   # POST /jobsearches or /jobsearches.json
   def create
-    @jobsearch = Jobsearch.new(jobsearch_params)
+    @jobsearch = Jobsearch.find_or_initialize_by(jobsearch_params)
 
     respond_to do |format|
       if @jobsearch.save
+        @jobsearch.usersearches << Usersearch.create(user_id: 1)
         format.html { redirect_to @jobsearch, notice: "Jobsearch was successfully created." }
         format.json { render :show, status: :created, location: @jobsearch }
       else

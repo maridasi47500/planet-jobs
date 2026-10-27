@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @computerskill %>
+
+<div>
+  <%= link_to "Edit this computerskill", edit_computerskill_path(@computerskill) %> |
+  <%= link_to "Back to computerskills", computerskills_path %>
+
+  <%= button_to "Destroy this computerskill", @computerskill, method: :delete %>
+</div>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @metchallenge %>
+
+<div>
+  <%= link_to "Edit this metchallenge", edit_metchallenge_path(@metchallenge) %> |
+  <%= link_to "Back to metchallenges", metchallenges_path %>
+
+  <%= button_to "Destroy this metchallenge", @metchallenge, method: :delete %>
+</div>

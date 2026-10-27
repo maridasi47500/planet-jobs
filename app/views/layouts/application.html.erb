@@ -30,6 +30,7 @@
       <%candidat=false%>
       <%=(candidat ? "&#9745; tu as candidaté à au moins une offre dans les 7 jours précédents" : "&#9744; tu as candidaté à aucune offre dans les 7 jours précédents").html_safe%>
       <%=link_to "CVs", resumes_path%>
+      <%=link_to "challenges", challenges_path%>
       <%=link_to "job searches", jobsearches_path%>
     </nav>
     <%= yield %>

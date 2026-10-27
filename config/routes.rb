@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :jobs
+  resources :resumeassets
+  resources :computerskills
+  resources :spokenlanguages
+  resources :diplomes
+  resources :metchallenges
+  resources :challenges
   resources :resumes
   resources :usersearches
   resources :jobsearches
@@ -13,5 +20,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "jobsearches#index"
+  root "jobsearches#new"
 end

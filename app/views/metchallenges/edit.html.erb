@@ -1,0 +1,12 @@
+<% content_for :title, "Editing metchallenge" %>
+
+<h1>Editing metchallenge</h1>
+
+<%= render "form", metchallenge: @metchallenge %>
+
+<br>
+
+<div>
+  <%= link_to "Show this metchallenge", @metchallenge %> |
+  <%= link_to "Back to metchallenges", metchallenges_path %>
+</div>

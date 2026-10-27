@@ -1,10 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @resume %>
+<%b=%w(diplomes computerskills jobs resumeassets spokenlanguages)%>
+<%b.to_a.each do |x| %>
+  <%if eval("@resume.#{x}.length > 0")%>
+<h2>
+  <%="#{x}"%>
+</h2>
+<%=render eval("@resume.#{x}")%>
+<%end%>
+<%end%>
+<%=render @resume.jobs%>
+<%= link_to "ajouter un nouveau diplôme dans le cv", new_diplome_path(resume_id: @resume.id) %>
+
+| <%= link_to "ajouter une nouvelle langue dans le cv", new_spokenlanguage_path(resume_id: @resume.id) %>
+
+| <%= link_to "ajouter un nouvel atout dans le cv", new_resumeasset_path(resume_id: @resume.id) %>
+
+| <%= link_to "ajouter une nouvelle expérience professionnelle", new_job_path(resume_id: @resume.id) %>
+
+
+| <%= link_to "ajouter une nouvelle compétence informatique", new_computerskill_path(resume_id: @resume.id) %>
+
+
+
 <%a=%w(projet_professionnel email phone poste_convoite nom_complet ville permis)%>
+<%b=%w(diplomes computerskills jobs resumeassets spokenlanguages)%>
 <%y=[@resume.projet_professionnel, @resume.email, @resume.phone, @resume.poste_convoite, @resume.nom_complet, @resume.ville, @resume.permis]%>
+<%w=b.map{|j|eval("@resume.#{j}") }%>
 <%x=y.map{|h|h.to_s.length > 0}.select{|h|h}.length%>
-<%z=(x/y.length.to_f*100).to_i%>
+<%x+=w.map{|h|h.length > 0}.select{|h|h}.length%>
+<%z=(x/(y.length.to_f + w.length.to_f)*100).to_i%>
 <p>
 votre cv est complété à <%=z%>%
 </p>
@@ -15,6 +41,12 @@ votre cv est complété à <%=z%>%
 <%a.to_a.each do |h|%>
   <li>
     <%=(@resume[h].to_s.length > 0 ? "&#9745; #{h.titleize}" : "&#9744; #{h.titleize}").html_safe%>
+    
+  </li>
+<%end%>
+<%b.to_a.each do |h|%>
+  <li>
+    <%=(eval("@resume.#{h}").length > 0 ? "&#9745; #{h.titleize}" : "&#9744; #{h.titleize}").html_safe%>
     
   </li>
 <%end%>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @spokenlanguage %>
+
+<div>
+  <%= link_to "Edit this spokenlanguage", edit_spokenlanguage_path(@spokenlanguage) %> |
+  <%= link_to "Back to spokenlanguages", spokenlanguages_path %>
+
+  <%= button_to "Destroy this spokenlanguage", @spokenlanguage, method: :delete %>
+</div>

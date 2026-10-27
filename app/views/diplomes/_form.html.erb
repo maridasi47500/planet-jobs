@@ -1,0 +1,56 @@
+<%= form_with(model: diplome) do |form| %>
+  <% if diplome.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(diplome.errors.count, "error") %> prohibited this diplome from being saved:</h2>
+
+      <ul>
+        <% diplome.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :datedebut, style: "display: block" %>
+    <%= form.date_field :datedebut %>
+  </div>
+
+  <div>
+    <%= form.label :datefin, style: "display: block" %>
+    <%= form.date_field :datefin %>
+  </div>
+
+  <div>
+    <%= form.label :nom_diplome, style: "display: block" %>
+    <%= form.text_field :nom_diplome %>
+  </div>
+
+  <div>
+    <%= form.label :until_today, style: "display: block" %>
+    <%= form.checkbox :until_today %>
+  </div>
+
+  <div>
+    <%= form.label :nom_ecole, style: "display: block" %>
+    <%= form.text_field :nom_ecole %>
+  </div>
+
+  <div>
+    <%= form.label :lieu, style: "display: block" %>
+    <%= form.text_field :lieu %>
+  </div>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.textarea :details %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :resume_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

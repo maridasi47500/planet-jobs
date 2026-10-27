@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Resumeassets" %>
+
+<h1>Resumeassets</h1>
+
+<div id="resumeassets">
+  <% @resumeassets.each do |resumeasset| %>
+    <%= render resumeasset %>
+    <p>
+      <%= link_to "Show this resumeasset", resumeasset %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New resumeasset", new_resumeasset_path %>

@@ -10,12 +10,85 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_26_152216) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_27_135717) do
+  create_table "challenges", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "user_id"
+    t.time "length_of_time"
+    t.string "pic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "computerskills", force: :cascade do |t|
+    t.string "name"
+    t.string "level"
+    t.text "details"
+    t.integer "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_computerskills_on_resume_id"
+  end
+
+  create_table "diplomes", force: :cascade do |t|
+    t.date "datedebut"
+    t.date "datefin"
+    t.string "nom_diplome"
+    t.boolean "until_today"
+    t.string "nom_ecole"
+    t.string "lieu"
+    t.text "details"
+    t.integer "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_diplomes_on_resume_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.date "datedebut"
+    t.date "datefin"
+    t.boolean "until_today"
+    t.string "mission"
+    t.string "entreprise"
+    t.string "lieu"
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_jobs_on_resume_id"
+  end
+
   create_table "jobsearches", force: :cascade do |t|
     t.string "what"
     t.string "where"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "metchallenges", force: :cascade do |t|
+    t.integer "challenge_id"
+    t.integer "user_id"
+    t.text "details"
+    t.string "pic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resumeassets", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.string "name"
+    t.text "details"
+    t.string "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_resumeassets_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -31,6 +104,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_26_152216) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "spokenlanguages", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.integer "language_id", null: false
+    t.string "level"
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_spokenlanguages_on_language_id"
+    t.index ["resume_id"], name: "index_spokenlanguages_on_resume_id"
+  end
+
   create_table "usersearches", force: :cascade do |t|
     t.integer "jobsearch_id", null: false
     t.integer "user_id"
@@ -40,5 +124,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_26_152216) do
     t.index ["jobsearch_id"], name: "index_usersearches_on_jobsearch_id"
   end
 
+  create_table "ville_mobilites", force: :cascade do |t|
+    t.string "name"
+    t.integer "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_ville_mobilites_on_resume_id"
+  end
+
+  add_foreign_key "computerskills", "resumes"
+  add_foreign_key "diplomes", "resumes"
+  add_foreign_key "jobs", "resumes"
+  add_foreign_key "resumeassets", "resumes"
+  add_foreign_key "spokenlanguages", "languages"
+  add_foreign_key "spokenlanguages", "resumes"
   add_foreign_key "usersearches", "jobsearches"
+  add_foreign_key "ville_mobilites", "resumes"
 end

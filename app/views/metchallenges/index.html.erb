@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Metchallenges" %>
+
+<h1>Metchallenges</h1>
+
+<div id="metchallenges">
+  <% @metchallenges.each do |metchallenge| %>
+    <%= render metchallenge %>
+    <p>
+      <%= link_to "Show this metchallenge", metchallenge %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New metchallenge", new_metchallenge_path %>

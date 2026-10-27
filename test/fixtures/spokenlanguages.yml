@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resume: one
+  language: one
+  level: MyString
+  details: MyText
+
+two:
+  resume: two
+  language: two
+  level: MyString
+  details: MyText

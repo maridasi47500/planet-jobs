@@ -1,0 +1,56 @@
+<%= form_with(model: job) do |form| %>
+  <% if job.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+        <% job.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :resume_id %>
+  </div>
+
+  <div>
+    <%= form.label :datedebut, style: "display: block" %>
+    <%= form.date_field :datedebut %>
+  </div>
+
+  <div>
+    <%= form.label :datefin, style: "display: block" %>
+    <%= form.date_field :datefin %>
+  </div>
+
+  <div>
+    <%= form.label :until_today, style: "display: block" %>
+    <%= form.checkbox :until_today %>
+  </div>
+
+  <div>
+    <%= form.label :mission, style: "display: block" %>
+    <%= form.text_field :mission %>
+  </div>
+
+  <div>
+    <%= form.label :entreprise, style: "display: block" %>
+    <%= form.text_field :entreprise %>
+  </div>
+
+  <div>
+    <%= form.label :lieu, style: "display: block" %>
+    <%= form.text_field :lieu %>
+  </div>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.textarea :details %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
