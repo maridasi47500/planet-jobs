@@ -1,0 +1,29 @@
+<%= form_with(model: metchallenge) do |form| %>
+  <% if metchallenge.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(metchallenge.errors.count, "error") %> prohibited this metchallenge from being saved:</h2>
+
+      <ul>
+        <% metchallenge.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :challenge_id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :user_id %>
+  </div>
+  <div>
+    <%= form.hidden_field :met, value: "met"%>
+  </div>
+
+
+  <div>
+    <%= form.submit "The challenge is met" %>
+  </div>
+<% end %>

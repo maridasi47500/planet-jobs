@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_27_135717) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_28_005234) do
   create_table "challenges", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.integer "user_id"
-    t.time "length_of_time"
+    t.string "length_of_time"
     t.string "pic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,6 +79,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_27_135717) do
     t.string "pic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "started_at"
+    t.datetime "met_at"
   end
 
   create_table "resumeassets", force: :cascade do |t|

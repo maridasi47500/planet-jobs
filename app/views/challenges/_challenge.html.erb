@@ -16,7 +16,11 @@
 
   <div>
     <strong>Length of time:</strong>
-    <%= challenge.length_of_time %>
+    <%begin%>
+    approximately <%= distance_of_time_in_words_to_now(eval("Time.now - ("+challenge.length_of_time+")"))%>
+  <%rescue => e%>
+    <%="error"+e.message%>
+  <%end%>
   </div>
 
   <div>

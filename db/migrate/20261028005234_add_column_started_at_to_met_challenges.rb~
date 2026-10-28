@@ -1,0 +1,6 @@
+class AddColumnStartedAtToMetChallenges < ActiveRecord::Migration[8.1]
+  def change
+    add_column :met_challenges, :started_at, :datetime
+    add_column :met_challenges, :met_at, :datetime
+  end
+end

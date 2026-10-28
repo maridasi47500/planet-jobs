@@ -28,7 +28,23 @@
 
   <div>
     <%= form.label :length_of_time, style: "display: block" %>
-    <%= form.time_field :length_of_time %>
+
+  </div>
+  <div>
+    <%= form.label :jours, style: "display: block" %>
+    <%= form.number_field :jours, value: challenge.mesjours %>
+  </div>
+  <div>
+    <%= form.label :heures, style: "display: block" %>
+    <%= form.number_field :heures, value: challenge.mesheures %>
+  </div>
+  <div>
+    <%= form.label :minutes, style: "display: block" %>
+    <%= form.number_field :minutes, value: challenge.mesminutes %>
+  </div>
+  <div>
+    <%= form.label :secondes, style: "display: block" %>
+    <%= form.number_field :secondes, value: challenge.messecondes %>
   </div>
 
   <div>

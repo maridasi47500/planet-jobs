@@ -8,11 +8,12 @@ class ChallengesController < ApplicationController
 
   # GET /challenges/1 or /challenges/1.json
   def show
+    @metchallenge=Metchallenge.new(user_id: @usertest, challenge_id: @challenge.id)
   end
 
   # GET /challenges/new
   def new
-    @challenge = Challenge.new
+    @challenge = Challenge.new(heures: 0, jours: 0, secondes: 0, minutes: 0)
   end
 
   # GET /challenges/1/edit
@@ -65,6 +66,6 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.expect(challenge: [ :title, :content, :user_id, :length_of_time, :pic ])
+      params.expect(challenge: [ :title, :content, :user_id, :length_of_time, :pic, :jours, :heures, :minutes, :secondes])
     end
 end

@@ -1,2 +1,27 @@
 class Challenge < ApplicationRecord
+  attr_accessor :jours, :heures, :minutes, :secondes
+  before_validation :hey
+  def hey
+    self.length_of_time = jours.to_i.to_s+".to_i.days + "+heures.to_i.to_s+".to_i.hours + "+minutes.to_i.to_s+".to_i.minutes + "+secondes.to_i.to_s+".to_i.seconds"
+  end
+  def mesjours
+    eval(self.length_of_time.split(" + ")[0]) / 1.day
+  rescue
+    0
+  end
+  def mesheures
+    eval(self.length_of_time.split(" + ")[1]) / 1.hour
+  rescue
+    0
+  end
+  def mesminutes
+    eval(self.length_of_time.split(" + ")[2]) / 1.minute
+  rescue
+    0
+  end
+  def messecondes
+    eval(self.length_of_time.split(" + ")[3]) / 1.second
+  rescue
+    0
+  end
 end

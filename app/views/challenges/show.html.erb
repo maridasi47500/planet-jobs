@@ -1,6 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
+<% @m=Metchallenge.where(user_id: @usertest) %>
 <%= render @challenge %>
+<%if @m.length == 0 %>
+
+
+<h1>Start this challenge</h1>
+
+<%= render "metchallenges/otherform", metchallenge: @metchallenge %>
+<%elsif !@m[0].details and @challenge.met_at.nil? and Time.now > (@challenge.started_at + eval(@challenge.length_of_time))%>
+  <h2>Time out </h2>
+  <p>
+  you have no time left to meet the challenge
+  </p>
+  <p>
+  you should have met the challenge 
+<%= time_ago_in_words(@challenge.started_at + eval(@challenge.length_of_time))%>
+  ago
+  </p>
+<%elsif !@m[0].details and @challenge.met_at.nil? and Time.now < (@challenge.started_at + eval(@challenge.length_of_time))%>
+  <h2>Is the challenge met ? </h2>
+<%= render "metchallenges/metform", metchallenge: @m[0] %>
+<%else%>
+  <h2>The met challenge </h2>
+<%= render @m[0] %>
+<%end%>
+
 
 <div>
   <%= link_to "Edit this challenge", edit_challenge_path(@challenge) %> |

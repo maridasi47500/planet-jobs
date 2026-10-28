@@ -25,7 +25,7 @@ class MetchallengesController < ApplicationController
 
     respond_to do |format|
       if @metchallenge.save
-        format.html { redirect_to @metchallenge, notice: "Metchallenge was successfully created." }
+        format.html { redirect_to @metchallenge.challenge, notice: "Metchallenge was successfully created." }
         format.json { render :show, status: :created, location: @metchallenge }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -38,7 +38,7 @@ class MetchallengesController < ApplicationController
   def update
     respond_to do |format|
       if @metchallenge.update(metchallenge_params)
-        format.html { redirect_to @metchallenge, notice: "Metchallenge was successfully updated.", status: :see_other }
+        format.html { redirect_to (@metchallenge.met == "met" ? edit_metchallenge_path(@metchallenge) : @metchallenge.challenge), notice: "Metchallenge was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @metchallenge }
       else
         format.html { render :edit, status: :unprocessable_content }
@@ -65,6 +65,6 @@ class MetchallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def metchallenge_params
-      params.expect(metchallenge: [ :challenge_id, :user_id, :details, :pic ])
+      params.expect(metchallenge: [ :challenge_id, :user_id, :details, :pic, :met ])
     end
 end
