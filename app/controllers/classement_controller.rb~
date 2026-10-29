@@ -1,0 +1,75 @@
+class ClassementController < ApplicationController
+  def index
+    @x=Resume.all.group_by{|h|h.user_id}
+    p @x
+    @cvcomplet=@x.map do |myid, resumes|
+      c=resumes.map do |resume|
+        a=%w(projet_professionnel email phone poste_convoite nom_complet ville permis)
+        b=%w(diplomes computerskills ville_mobilites jobs resumeassets spokenlanguages)
+        y=[resume.projet_professionnel, resume.email, resume.phone, resume.poste_convoite, resume.nom_complet, resume.ville, resume.permis]
+        w=b.map{|j|eval("resume.#{j}") }
+        x=y.map{|h|h.to_s.length > 0}.select{|h|h}.length
+        x+=w.map{|h|h.length > 0}.select{|h|h}.length
+        z=(x/(y.length.to_f + w.length.to_f)*100).to_i
+        
+        p "votre cv est complété à #{z}%"
+        z.to_i
+
+      end
+      score=c.sum/c.length
+      [myid, score]
+    end
+    @cvcomplet=@cvcomplet.to_h
+    p @cvcomplet.to_h
+    @candidats={}
+    @candidat=Resume.all.pluck(:user_id).uniq
+    @candidat.each do |id|
+      @candidats[id]=Userapplication.where("user_id = #{id} and created_at > ?", [(DateTime.now - 7.days).beginning_of_day]).length > 0 ? 100 : 0
+    end
+    @y=Metchallenge.all.group_by{|h|h.user_id}
+    @metchallenge=@y.map do |myid, challenges|
+      c=challenges.map do |challenge|   
+        myscore=0
+        if !challenge.started_at.nil?
+          myscore+=50
+        end
+        if !challenge.met_at.nil?
+          myscore+=40
+        end
+        if !challenge.details.nil?
+          myscore+=10
+        end
+        myscore.to_i
+
+      end
+      score=c.sum/c.length
+      [myid, score]
+    end
+    @mergeall={}
+    @metchallenge.each do |a,b|
+      @mergeall[a] += b
+      p "hey1"
+    rescue
+      @mergeall[a] = b
+      p "ouille"
+
+    end
+    @candidats.each do |a,b|
+      @mergeall[a] += b
+      p "hey2"
+    rescue
+      @mergeall[a] = b
+    end
+    @cvcomplet.each do |a,b|
+      @mergeall[a] += b
+      p "hey3"
+    rescue
+      @mergeall[a] = b
+    end
+    p @mergeall
+    @classement = @mergeall.sort_by { |key, _| key }.to_h
+    @x=`python3 somepythonscript.py`
+    
+
+  end
+end

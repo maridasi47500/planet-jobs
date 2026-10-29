@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "classement/index"
   resources :userapplications
   resources :companies
   resources :joboffers

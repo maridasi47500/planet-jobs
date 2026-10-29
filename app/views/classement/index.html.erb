@@ -1,0 +1,21 @@
+<h1>Classement</h1>
+<table>
+    <tr>
+    <td>
+      user id
+    </td>
+    <td>
+      score
+    </td>
+    </tr>
+  <%@classement.each do |userid, score|%>
+    <tr>
+    <td>
+      <%=userid%>
+    </td>
+    <td>
+      <%=score%>
+    </td>
+    </tr>
+  <%end%>
+</table>
