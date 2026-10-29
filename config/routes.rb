@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :userapplications
+  resources :companies
+  resources :joboffers
   resources :ville_mobilites
   resources :jobs
   resources :resumeassets

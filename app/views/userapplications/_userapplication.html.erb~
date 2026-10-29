@@ -1,0 +1,71 @@
+<div id="<%= dom_id userapplication %>">
+  <h2>
+    le détail de votre candidature
+  </h2>
+  <div>
+    <strong>User id:</strong>
+    <%= userapplication.user_id %>
+  </div>
+
+  <div>
+    <strong>Job offer:</strong>
+    <%= userapplication.joboffer.title %>
+  </div>
+
+  <div>
+    <strong>Resume:</strong>
+    <%myresume= userapplication.resume %>
+     <div class="col">
+
+    <div class="card" style="font-size: 10px;">
+      <div class="card-body">
+        <h5 class="card-title">
+        CV</h5>
+  
+  <p class="card-text">
+    <strong>Poste convoite:</strong>
+    <%= myresume.poste_convoite %>
+  </p>
+
+  <p class="card-text">
+    <strong>Nom complet:</strong>
+    <%= myresume.nom_complet %>
+  </p>
+
+  <p class="card-text">
+    <strong>Ville:</strong>
+    <%= myresume.ville %>
+  </p>
+
+  <p class="card-text">
+    <strong>Permis:</strong>
+    <%= myresume.permis %>
+  </p>
+
+  <p class="card-text">
+    <strong>Projet professionnel:</strong>
+    <%= myresume.projet_professionnel %>
+  </p>
+
+  <p class="card-text">
+    <strong>Email:</strong>
+    <%= myresume.email %>
+  </p>
+
+  <p class="card-text">
+    <strong>Phone:</strong>
+    <%= myresume.phone %>
+  </p>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div>
+    <strong>Lettre de motivation :</strong>
+    <%= simple_format(userapplication.letter) %>
+  </div>
+
+</div>

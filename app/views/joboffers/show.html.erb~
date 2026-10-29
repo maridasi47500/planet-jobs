@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @joboffer %>
+<%if Userapplication.where(user_id: @userapplication.user_id, joboffer_id: @joboffer.id).length > 0%>
+  <p>
+  vous avez déjà candidaté.
+  </p>
+<%else%>
+<h1>Candidature simplifiée</h1>
+
+<%= render "userapplications/form", userapplication: @userapplication %>
+
+<%end%>
+
+<br>
+
+
+
+<div>
+  <%= link_to "Edit this joboffer", edit_joboffer_path(@joboffer) %> |
+  <%= link_to "Back to joboffers", joboffers_path %>
+
+  <%= button_to "Destroy this joboffer", @joboffer, method: :delete %>
+</div>

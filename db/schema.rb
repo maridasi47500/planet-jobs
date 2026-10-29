@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_28_005234) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_29_004757) do
   create_table "challenges", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.integer "user_id"
     t.string "length_of_time"
     t.string "pic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +50,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_005234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resume_id"], name: "index_diplomes_on_resume_id"
+  end
+
+  create_table "joboffers", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "company_id", null: false
+    t.string "place_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_joboffers_on_company_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -117,6 +134,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_005234) do
     t.index ["resume_id"], name: "index_spokenlanguages_on_resume_id"
   end
 
+  create_table "userapplications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "joboffer_id", null: false
+    t.integer "resume_id", null: false
+    t.text "letter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["joboffer_id"], name: "index_userapplications_on_joboffer_id"
+    t.index ["resume_id"], name: "index_userapplications_on_resume_id"
+  end
+
   create_table "usersearches", force: :cascade do |t|
     t.integer "jobsearch_id", null: false
     t.integer "user_id"
@@ -136,10 +164,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_005234) do
 
   add_foreign_key "computerskills", "resumes"
   add_foreign_key "diplomes", "resumes"
+  add_foreign_key "joboffers", "companies"
   add_foreign_key "jobs", "resumes"
   add_foreign_key "resumeassets", "resumes"
   add_foreign_key "spokenlanguages", "languages"
   add_foreign_key "spokenlanguages", "resumes"
+  add_foreign_key "userapplications", "joboffers"
+  add_foreign_key "userapplications", "resumes"
   add_foreign_key "usersearches", "jobsearches"
   add_foreign_key "ville_mobilites", "resumes"
 end

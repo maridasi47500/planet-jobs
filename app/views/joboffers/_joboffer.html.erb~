@@ -1,0 +1,26 @@
+<div id="<%= dom_id joboffer %>">
+  <div>
+    <strong>Title:</strong>
+    <%= joboffer.title %>
+  </div>
+
+  <div>
+    <strong>Content:</strong>
+    <%= joboffer.content %>
+  </div>
+
+  <div>
+    <strong>Company:</strong>
+    <%= joboffer.company.name %>
+  </div>
+  <div>
+    <strong>à propos de <%= joboffer.company.name %></strong>
+    <%= joboffer.company.description %>
+  </div>
+
+  <div>
+    <strong>Place name:</strong>
+    <%= joboffer.place_name %>
+  </div>
+
+</div>

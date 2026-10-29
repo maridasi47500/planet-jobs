@@ -1,0 +1,93 @@
+<%= form_with(model: userapplication) do |form| %>
+  <% if userapplication.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(userapplication.errors.count, "error") %> prohibited this userapplication from being saved:</h2>
+
+      <ul>
+        <% userapplication.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :joboffer_id %>
+  </div>
+
+  <div>
+    <%= form.label :resume_id, style: "display: block" %>
+    
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    
+    <%= form.collection_radio_buttons :resume_id, Resume.all.where(user_id: 1), :id, :nom_complet do |b| %>
+
+      <%myresume=b.object%>
+      
+
+  <div class="col">
+    <%= b.label do%>
+
+    <div class="card" style="font-size: 10px;">
+      <div class="card-body">
+        <h5 class="card-title">
+    <%= b.radio_button %>
+        CV</h5>
+  
+  <p class="card-text">
+    <strong>Poste convoite:</strong>
+    <%= myresume.poste_convoite %>
+  </p>
+
+  <p class="card-text">
+    <strong>Nom complet:</strong>
+    <%= myresume.nom_complet %>
+  </p>
+
+  <p class="card-text">
+    <strong>Ville:</strong>
+    <%= myresume.ville %>
+  </p>
+
+  <p class="card-text">
+    <strong>Permis:</strong>
+    <%= myresume.permis %>
+  </p>
+
+  <p class="card-text">
+    <strong>Projet professionnel:</strong>
+    <%= myresume.projet_professionnel %>
+  </p>
+
+  <p class="card-text">
+    <strong>Email:</strong>
+    <%= myresume.email %>
+  </p>
+
+  <p class="card-text">
+    <strong>Phone:</strong>
+    <%= myresume.phone %>
+  </p>
+
+      </div>
+    </div>
+  <% end %>
+  </div>
+  
+<% end %>
+  </div>
+  </div>
+
+  <div>
+    <%= form.label :letter, style: "display: block" %>
+    <%= form.textarea :letter %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

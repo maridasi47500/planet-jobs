@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @userapplication %>
+
+<div>
+  <%= link_to "Edit this userapplication", edit_userapplication_path(@userapplication) %> |
+  <%= link_to "Back to userapplications", userapplications_path %>
+
+  <%= button_to "Destroy this userapplication", @userapplication, method: :delete %>
+</div>
