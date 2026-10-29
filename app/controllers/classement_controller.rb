@@ -68,7 +68,7 @@ class ClassementController < ApplicationController
     end
     p @mergeall
     @classement = @mergeall.sort_by { |key, _| key }.to_h
-    @scriptpython=`python3 somepythonscript.py`
+    @pythonscript=`python3 somepythonscript.py`
     
 
   end

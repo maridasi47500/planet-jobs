@@ -8,7 +8,7 @@
       score
     </td>
     </tr>
-  <%classement.each do |userid, score|%>
+  <%@classement.each do |userid, score|%>
     <tr>
     <td>
       <%=userid%>
