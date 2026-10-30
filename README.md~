@@ -2,9 +2,24 @@
 1à best hits, choisir 1 planet, choisir 1 job
 - c comme 10 top hits, choisir 1 planet et 1 job
 - "boost l'emploi" :rocket: job search :star: :ringed_planet: :milky_way:
-- 
-- star wars library
+-  il n'y a pas encore en login tuot est enreisgistré ou préenregistré avec l'user "1"(test user)
+
+## Installation de star wars api
+
+- dans le classement, il y a des faits étonnants avec la star wars library
+
+    $ python3 -m venv venv
+    $ source venv/bin/activate
+    $ python3 -m pip install -r requirements.txt
+
+    If you do not have venv or pip3 installed in your machine and you are trying to run it on Ubuntu, you can install them:
+
+    ** Ubuntu: sudo apt-get install python3-venv
+    ** Ubuntu: sudo apt install python3-pip
+
+
 - recherche d'emploi 
+
 ---
 
 ## 🎮 Tableau explicatif des mécaniques de gamification
