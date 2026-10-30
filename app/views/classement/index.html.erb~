@@ -2,10 +2,11 @@
 <%@zzz=JSON.parse(@pythonscript.encode("utf-8", invalid: :replace, replace: "").strip.gsub("'","\""))%>
 <%params[:stars]||=[]%>
 <%=form_with method: :get do |x|%>
-  <%["faster person with s", "faster person with v","starships speed by person","find pilots from s"].map{|h|[h.underscore, h]}.each_with_index do |h,i,xx|%>
+  <%["faster person with s", "faster person with v","starships speed by person","find pilots from s"].map{|h|[h.gsub(" ","_"), h]}.each_with_index do |h,xx|%>
     <%=x.label "stars#{xx}" do%>
-    <%=h%>
-    <%=x.check_box "stars[]",id: "star#{xx}", value: i%>
+
+    <%=x.check_box "stars",{multiple: true, id: "stars#{xx}"}, h[1]%>
+    <%=h[0]%>
 <%end%>
 <%end%>
   <%=x.submit "reload this page"%>
