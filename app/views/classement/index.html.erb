@@ -1,5 +1,34 @@
 <h1>Classement</h1>
-<%=@pythonscript%>
+<%@zzz=JSON.parse(@pythonscript.encode("utf-8", invalid: :replace, replace: "").strip.gsub("'","\""))%>
+<%params[:stars]||=[]%>
+<%=form_with method: :get do |x|%>
+  <%["faster person with s", "faster person with v","starships speed by person","find pilots from s"].map{|h|[h.underscore, h]}.each_with_index do |h,xx|%>
+    <%=x.label "stars#{xx}" do%>
+    <%=h[0]%>
+    <%=x.check_box "stars[]",id: "star#{xx}", value: h[1]%>
+<%end%>
+<%end%>
+  <%=x.submit "reload this page"%>
+<%end%>
+<h2>Did you know ?</h2>
+<%if params[:stars].include?("faster_person_with_s")%>
+<%@zzz["faster_person_with_s"].each do |h|%>
+  <p><%=h["Name"]%>'s <%=h['Vehicle name']%>'s max speed was <%=h['Max. Speed']%>?</p>
+<%end%>
+<%end%>
+<%if params[:stars].include?("faster_person_with_v")%>
+<%@zzz["faster_person_with_v"].each do |h|%>
+  <p><%=h["Name"]%>'s <%=h['Vehicle name']%>'s max speed was <%=h['Max. Speed']%>?</p>
+<%end%>
+<%end%>
+<%if params[:stars].include?("starships_speed_by_person")%>
+<%@zzz["starships_speed_by_person"].each do |yy|%>
+<%yy.each do |h|%>
+  <p><%=h["name"]%> (<%=h["gender"]%>)'s <%=h['modelvehicle']%> <%=h['namevehicle']%>'s max speed was <%=h['Max. Speed']%>?</p>
+<%end%>
+<%end%>
+<%end%>
+
 <table>
     <tr>
     <td>
@@ -20,3 +49,10 @@
     </tr>
   <%end%>
 </table>
+<%if params[:stars].include?("find_pilots_from_s")%>
+<h2>le savais-tu</h2>
+
+<%@zzz["find_pilots_from_s"].each do |h|%>
+  <p><%=h[0].map{|x| "#{x["name"]} (#{x["gender"]})" }.to_sentence%> have driven the <%=h[1]%>, which Max. Speed is <%=h[2]%>?</p>
+<%end%>
+<%end%>

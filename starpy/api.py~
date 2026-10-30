@@ -98,7 +98,7 @@ class GetStars(StarPyMae):
             raise Exception('Choose between self._VEHICLES or self._STAR_SHIPS')
         return vehicles
 
-    def _find_pilots_to_list(self, transport):
+    def _find_pilots_to_my_list(self, transport):
         """ Find pilots and append to a list depending on type of transport passed as argument \n
         :param transport :type str \n
         :return list
@@ -118,6 +118,33 @@ class GetStars(StarPyMae):
         #v = self._get_next_page(transport, page)['results']
         for j in self.l(v):
             if v[j]['pilots'] and v[j]['max_atmosphering_speed']:
+                listedepilotes=[]
+                for zz in v[j]['pilots']:
+                  pilot = self.get_person_by_id(zz.split("/")[-1])
+                  name = pilot['name']
+                  gender = pilot['gender']
+                  listedepilotes.append({'name': name, 'gender': gender})
+                    
+                lista = listedepilotes, v[j]['name'], v[j]['max_atmosphering_speed']
+                li2.append(lista)
+        return li2
+    def _find_pilots_to_list(self, transport):
+        """ Find pilots and append to a list depending on type of transport passed as argument \n
+        :param transport :type str \n
+        :return list
+        """
+        v = self._if_transport(transport)
+        #print(v)
+        page, li2 = 1, []
+        for j in self.l(v):
+            if v[j]['pilots'] and v[j]['max_atmosphering_speed']:
+                listedepilotes=[]
+                for zz in v[j]['pilots']:
+                  pilot = self.get_person_by_id(zz.split("/")[-1])
+                  name = pilot['name']
+                  gender = pilot['gender']
+                  listedepilotes.append({'name': name, 'gender': gender})
+                    
                 lista = v[j]['pilots'], v[j]['name'], v[j]['max_atmosphering_speed']
                 li2.append(lista)
         return li2
@@ -128,7 +155,7 @@ class GetStars(StarPyMae):
 
     def find_pilots_from_s(self):
         """ Finds star ship pilots """
-        return self._find_pilots_to_list(self._STAR_SHIPS)
+        return self._find_pilots_to_my_list(self._STAR_SHIPS)
 
     def _find_x_transport_name_and_its_speed(self, transport, sp):
         """
@@ -221,7 +248,7 @@ class GetStars(StarPyMae):
         for i in self.l(fastest):
             n = fastest[i]
             url_list.append(df[0][n][0])
-        print(url_list)
+        #print(url_list)
         return url_list
 
     def _url_fastest_pilots_v(self):
@@ -247,7 +274,7 @@ class GetStars(StarPyMae):
         """
         pilot_id, il = self._url_of_fastest_pilot(transport), []
         for i in self.l(pilot_id):
-            pid = pilot_id[i].split('/')[-2]
+            pid = pilot_id[i].split('/')[-1]
             il.append(pid)
         return il
 
@@ -313,16 +340,24 @@ class GetStars(StarPyMae):
         :type str, int \n
         :return list
          """
+        personobject=(self.get_person_by_id(idname))
         lss, transport_urls_id = [], self.get_person_by_id(idname)[transport]
         for i in self.l(transport_urls_id):
-            url_id = transport_urls_id[i].split('/')[-2]
+            url_id = transport_urls_id[i].split('/')[-1]
+            namemodel = self._by_idtransports_return_its_name_and_model(transport, url_id)
             speed = self._by_idtransports_return_its_speed(transport, url_id)
-            l_data = [{'transport_id': url_id, 'Max. Speed': speed}]
+            l_data = [{'name': personobject["name"], 'namevehicle': namemodel['name'], 'modelvehicle': namemodel['model'], 'gender': personobject['gender'], 'transport':transport, 'transport_id': url_id, 'Max. Speed': speed}]
             lss.append(l_data)
         return lss
 
+    def _by_idtransports_return_its_name_and_model(self, transport, idtrans):
+        """ Returns transport speed by passing type of transport and its id as an argument """
+        name=self._get_transport(transport, idtrans)['name']
+        model=self._get_transport(transport, idtrans)['model']
+        return {'name': name, 'model': model}
     def _by_idtransports_return_its_speed(self, transport, idtrans):
         """ Returns transport speed by passing type of transport and its id as an argument """
+        #print(self._get_transport(transport, idtrans))
         return self._get_transport(transport, idtrans)['max_atmosphering_speed']
 
     def starships_speed_by_person(self, idpeople):
