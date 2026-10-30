@@ -2,16 +2,17 @@
 <%@zzz=JSON.parse(@pythonscript.encode("utf-8", invalid: :replace, replace: "").strip.gsub("'","\""))%>
 <%params[:stars]||=[]%>
 <%=form_with method: :get do |x|%>
-  <%["faster person with s", "faster person with v","starships speed by person","find pilots from s"].map{|h|[h.gsub(" ","_"), h]}.each_with_index do |h,xx|%>
+  <%["faster person with s", "faster person with v","starships speed by person","find pilots from s"].map{|h|[h, h.gsub(" ","_")]}.each_with_index do |h,xx|%>
     <%=x.label "stars#{xx}" do%>
 
-    <%=x.check_box "stars",{multiple: true, id: "stars#{xx}"}, h[1]%>
+    <%=x.check_box "stars",{multiple: true, checked: params[:stars].to_a.include?(h[1]), id: "stars#{xx}"}, h[1]%>
     <%=h[0]%>
 <%end%>
 <%end%>
   <%=x.submit "reload this page"%>
 <%end%>
 <h2>Did you know ?</h2>
+<p>pour charger des faits épatants, sélectionner une option et recharge la page </p>
 <%if params[:stars].include?("faster_person_with_s")%>
 <%@zzz["faster_person_with_s"].each do |h|%>
   <p><%=h["Name"]%>'s <%=h['Vehicle name']%>'s max speed was <%=h['Max. Speed']%>?</p>

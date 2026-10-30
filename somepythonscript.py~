@@ -9,6 +9,7 @@ import json
 
 
 s = starpy.GetStars()
+myarg=[]
 try:
     myarg=[sys.argv[1]]
     myarg.append(sys.argv[2])
@@ -27,8 +28,10 @@ if "find_pilots_from_s" in myarg:
     superhash["find_pilots_from_s"]= s.find_pilots_from_s()
 if "find_fastest_s" in myarg:
    superhash["find_fastest_s"]= str(s.find_fastest_s())
-if "find_person_with_s" in myarg:
+if "faster_person_with_s" in myarg:
    superhash["faster_person_with_s"]= s.fastest_person_with_s()
+if "faster_person_with_v" in myarg:
+   superhash["faster_person_with_s"]= s.fastest_person_with_v()
 if "starships_speed_by_person" in myarg:
    superhash["starships_speed_by_person"]= s.starships_speed_by_person(myid)
 print(json.dumps(superhash))
