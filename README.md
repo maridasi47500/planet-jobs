@@ -1,4 +1,10 @@
 # planet-jobs
+![alt text](jobsearch1.png.jpg)
+![alt text](jobsearch2.jpg)
+![alt text](jobsearch3.jpg)
+![alt text](jobsearch4.jpg)
+![alt text](jobsearch5.jpg)
+
 1à best hits, choisir 1 planet, choisir 1 job
 - c comme 10 top hits, choisir 1 planet et 1 job
 - "boost l'emploi" :rocket: job search :star: :ringed_planet: :milky_way:

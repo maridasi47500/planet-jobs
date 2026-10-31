@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<% @m=Metchallenge.where(user_id: @usertest) %>
+<% @m=Metchallenge.where(challenge: @challenge, user_id: @usertest) %>
 <%= render @challenge %>
 <%if @m.length == 0 %>
 
