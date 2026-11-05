@@ -34,6 +34,7 @@
       | <%=link_to "job searches", jobsearches_path%>
       | <%=link_to "companies", companies_path%>
       | <%=link_to "job offers", joboffers_path%>
+      | <%=link_to "classement", classement_index_path%>
 
     </nav>
     <%= yield %>

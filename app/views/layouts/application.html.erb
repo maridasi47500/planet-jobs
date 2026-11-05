@@ -29,6 +29,7 @@
     <nav>
       <%candidat=Userapplication.where("user_id = 1 and created_at > ?", [(DateTime.now - 7.days).beginning_of_day]).length > 0%>
       <%=(candidat ? "&#9745; tu as candidaté à au moins une offre dans les 7 jours précédents" : "&#9744; tu as candidaté à aucune offre dans les 7 jours précédents").html_safe%>
+      | <%=link_to "nouvelle recherche d'emploi", new_jobsearch_path%>
       | <%=link_to "CVs", resumes_path%>
       | <%=link_to "challenges", challenges_path%>
       | <%=link_to "job searches", jobsearches_path%>
